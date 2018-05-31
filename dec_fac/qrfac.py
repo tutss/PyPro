@@ -10,7 +10,7 @@ def qr_scipy_example():
     print('scipy r: \n', R)
 
 
-# My implementation
+# My implementation of some methods, just to get used to NumPy
 def transpose_matrix(M):
     return np.transpose(M)
 
@@ -29,6 +29,14 @@ def multiply_matrix(M, N):
     return 0
 
 
+"""
+QR factorization
+Where Qn..Q1 * A = R
+And A = Q1'...Qn' * R
+And A = Q * R
+
+I didnt create a matrix R, instead I used H * A, changing A
+"""
 def qr(A):
     m, n = A.shape
     Q = np.eye(m)
@@ -40,6 +48,13 @@ def qr(A):
     return Q, A
 
 
+"""
+Implementation of Householder reflection
+a - column vector
+v - unit vector obtained by a
+return h, a householder reflection of the vector h,
+       that preserves length
+"""
 def householder(a):
     v = a / (a[0] + np.copysign(np.linalg.norm(a), a[0]))
     v[0] = 1
@@ -47,7 +62,9 @@ def householder(a):
     h -= (2 / np.dot(v[None, :], v[:, None])) * np.dot(v[:, None], v[None, :])
     return h
 
-
+"""
+Main method
+"""
 def main():
     A = np.array([[12, -51, 4], [6, 167, -68], [-4, 24, -41]])
     Q, R = qr(A)
