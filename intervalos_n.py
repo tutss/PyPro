@@ -9,7 +9,7 @@ def intervalos_n(a, k, d, e):
 		c[a[i]] = c[a[i]] + 1
 	for i in range(1, k):
 		c[i] = c[i] + c[i - 1]
-	valor_n = c[e] - c[d]
+		valor_n = c[e] - c[d]
 	return valor_n
 
 def main():
